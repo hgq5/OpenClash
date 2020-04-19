@@ -38,8 +38,7 @@
 	  		<b> 客户端版本更新 </b>
 	  	</p>
 	  </td></tr>
-		<tr><td width="25%"> 当前客户端版本 </td><td width="25%" align="left" id="OP_CV"><%:Collecting data...%></td><td width="25%"> 最新客户端版本 </td><td width="25%" align="left" id="OP_LV"><%:Collecting data...%></td></tr>
-	  <tr><td width="25%"> 更新客户端 </td><td width="25%" align="left" id="op_up"><%:Collecting data...%></td><td width="25%"> 下载最新版本客户端 </td><td width="25%" align="left" id="ma_op_up"><%:Collecting data...%></td></tr>
+		<tr><td width="25%"> 当前客户端版本 </td><td width="25%" align="left" id="OP_CV"><%:Collecting data...%></td></tr>
 	</table>
 </fieldset>
 <fieldset class="cbi-section">
@@ -71,7 +70,7 @@
 	var ma_core_game_up  = document.getElementById('ma_core_game_up');
 	var ma_op_up  = document.getElementById('ma_op_up');
 	var restore  = document.getElementById('restore');
-	XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "update")%>', null, function(x, status) {
+	XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "update")%>', null, function(x, status) {
 		if ( x && x.status == 200 ) {
 			var cpu_models = status.coremodel;
 			var arr_model = cpu_models.split(",");
@@ -165,7 +164,7 @@
 		}
 	});
   
-	XHR.poll(6, '<%=luci.dispatcher.build_url("admin", "services", "openclash", "update")%>', null, function(x, status) {
+	XHR.poll(6, '<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "update")%>', null, function(x, status) {
 		if ( x && x.status == 200 ) {
 		  var cpu_models = status.coremodel;
 			var arr_model = cpu_models.split(",");
@@ -272,7 +271,7 @@
 	function core_update(btn)
     {
     
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "coreupdate")%>', null, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "coreupdate")%>', null, function(x, status) {
         btn.value    = '<%:检查并更新%>';
         btn.disabled = false;
         return false; 
@@ -283,7 +282,7 @@
 	function core_tun_update(btn)
     {
     
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "coretunupdate")%>', null, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "coretunupdate")%>', null, function(x, status) {
         btn.value    = '<%:检查并更新%>';
         btn.disabled = false;
         return false; 
@@ -294,7 +293,7 @@
 	function core_game_update(btn)
     {
     
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "coregameupdate")%>', null, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "coregameupdate")%>', null, function(x, status) {
         btn.value    = '<%:检查并更新%>';
         btn.disabled = false;
         return false; 
@@ -305,7 +304,7 @@
 	function op_update(btn)
     {
 
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "opupdate")%>', null, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "opupdate")%>', null, function(x, status) {
         btn.value    = '<%:检查并更新%>';
         btn.disabled = false;
         return false;
@@ -316,7 +315,7 @@
     {
         btn.value    = '<%:下载到本地%>';
         btn.disabled = false;
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "update_ma")%>', status.corever, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "update_ma")%>', status.corever, function(x, status) {
         if ( x && x.status == 200 ) {
            if ( status.corever != "0\n" ) {
               url1='https://github.com/vernesong/OpenClash/releases/download/Clash/clash-'+status.corever+'.tar.gz';
@@ -334,7 +333,7 @@
     {
         btn.value    = '<%:下载到本地%>';
         btn.disabled = false;
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "update_ma")%>', null, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "update_ma")%>', null, function(x, status) {
         if ( x && x.status == 200 ) {
         	 var corelv = status.corelv;
            var arr_core = corelv.split(",");
@@ -358,7 +357,7 @@
     {
         btn.value    = '<%:下载到本地%>';
         btn.disabled = false;
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "update_ma")%>', status.corever, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "update_ma")%>', status.corever, function(x, status) {
         if ( x && x.status == 200 ) {
            if ( status.corever != "0\n" ) {
               url4='https://github.com/vernesong/OpenClash/releases/download/TUN/clash-'+status.corever+'.tar.gz';
@@ -376,7 +375,7 @@
     {
         btn.value    = '<%:下载到本地%>';
         btn.disabled = false;
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "update_ma")%>', status.oplv, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "update_ma")%>', status.oplv, function(x, status) {
         if ( x && x.status == 200 ) {
            var oplv = status.oplv;
            var oplvis = oplv.substring(oplv.indexOf("v") + 1,oplv.indexOf(","));
@@ -398,7 +397,7 @@
         btn.disabled = true;
         var r = confirm("确定要还原默认配置吗？")
         if (r == true) {
-        XHR.get('<%=luci.dispatcher.build_url("admin", "services", "openclash", "restore")%>', null, function(x, status) {
+        XHR.get('<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "restore")%>', null, function(x, status) {
         	if ( x && x.status == 200 ) {
         		alert('还原默认配置成功！')
         	}
@@ -412,7 +411,7 @@
         return false; 
     }
     
-    XHR.poll(7, '<%=luci.dispatcher.build_url("admin", "services", "openclash", "startlog")%>', status.startlog, function(x, status) {
+    XHR.poll(7, '<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "startlog")%>', status.startlog, function(x, status) {
 	  if ( x && x.status == 200 ) {
 		   if ( status.startlog == "\n" || status.startlog == "" ) {
 		      var rdmdl=Math.floor(Math.random()*2)+1;
@@ -428,7 +427,7 @@
     }
 	});
 	
-	XHR.poll(2, '<%=luci.dispatcher.build_url("admin", "services", "openclash", "startlog")%>', status.startlog, function(x, status) {
+	XHR.poll(2, '<%=luci.dispatcher.build_url("admin", "vpn", "openclash", "startlog")%>', status.startlog, function(x, status) {
 	  if ( x && x.status == 200 ) {
 		   if ( status.startlog != "\n" && status.startlog != "" ) {
 	     update_tip.innerHTML = '<b><font color="green">'+status.startlog+'</font></b>';

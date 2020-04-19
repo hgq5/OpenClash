@@ -37,7 +37,7 @@ o = s:option(Button, "refresh")
 o.inputtitle = translate("Refresh Log")
 o.inputstyle = "apply"
 o.write = function()
-  HTTP.redirect(luci.dispatcher.build_url("admin", "services", "openclash", "log"))
+  HTTP.redirect(luci.dispatcher.build_url("admin", "vpn", "openclash", "log"))
 end
 
 o = s:option(Button, "clean")
